@@ -2,16 +2,25 @@ package com.binarytreedemo;
 
 public class BinaryTree {
 
+    public Node root;
+   // public static boolean flag;
+
+    public BinaryTree() {
+
+    }
+
     static class Node{
         int data;
         Node left;
         Node right;
+
 
         public Node(int data) {
             this.data = data;
             left = null;
             right = null;
         }
+
     }
 
     public void insertElement(Node node , int data){
@@ -30,9 +39,9 @@ public class BinaryTree {
             else{
                 node.right= new Node(data);
             }
+
         }
     }
-    //To print
 
     public void traverseTree(Node node){
         if(node != null){
@@ -42,15 +51,70 @@ public class BinaryTree {
         }
     }
 
+    public static void search(Node root, int data, Node parent)
+    {
+        // if the root is null
+        if (root == null)
+        {
+            System.out.print("Key Not found");
+            return;
+        }
+
+        // if the key is found
+        if (root.data == data)
+        {
+            if (parent == null) {
+                System.out.print("The node with key " + data + " is root node");
+            }
+
+            else if (data < parent.data)
+            {
+                System.out.print("The given element "+ data +" is the left node of the Parent Node " + parent.data);
+            }
+            else {
+                System.out.print("The given element "+ data +" is the right node of the Parent Node " + parent.data);
+            }
+
+            return;
+        }
+
+        // if the given key is less than the root node, recur for the left subtree;
+        // otherwise, recur for the right subtree
+
+        if (data < root.data) {
+            search(root.left, data, root);
+        }
+        else {
+            search(root.right, data, root);
+        }
+    }
+
     public static void main(String [] args){
         BinaryTree binaryTree = new BinaryTree();
         Node node = new Node(56);  //head node
-
+        binaryTree.root  = node;
         binaryTree.insertElement(node,30);
         binaryTree.insertElement(node,70);
+        binaryTree.insertElement(node,3);
+        binaryTree.insertElement(node,11);
+        binaryTree.insertElement(node,16);
+        binaryTree.insertElement(node,22);
+        binaryTree.insertElement(node,40);
+        binaryTree.insertElement(node,60);
+        binaryTree.insertElement(node,95);
+        binaryTree.insertElement(node,65);
+        binaryTree.insertElement(node,63);
+        binaryTree.insertElement(node,67);
 
         System.out.println("Display Node");
         binaryTree.traverseTree(node);
+
+
+        search(binaryTree.root,63,null);
+
+
+
+
 
     }
 }
