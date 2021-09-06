@@ -2,16 +2,24 @@ package com.binarytreedemo;
 
 public class BinaryTree {
 
+    public Node root;
+
+    public BinaryTree() {
+
+    }
+
     static class Node{
         int data;
         Node left;
         Node right;
 
+        
         public Node(int data) {
             this.data = data;
             left = null;
             right = null;
         }
+
     }
 
     public void insertElement(Node node , int data){
@@ -30,9 +38,9 @@ public class BinaryTree {
             else{
                 node.right= new Node(data);
             }
+
         }
     }
-    //To print
 
     public void traverseTree(Node node){
         if(node != null){
@@ -42,10 +50,12 @@ public class BinaryTree {
         }
     }
 
+
+
     public static void main(String [] args){
         BinaryTree binaryTree = new BinaryTree();
         Node node = new Node(56);  //head node
-
+        binaryTree.root  = node;
         binaryTree.insertElement(node,30);
         binaryTree.insertElement(node,70);
         binaryTree.insertElement(node,3);
@@ -61,6 +71,13 @@ public class BinaryTree {
 
         System.out.println("Display Node");
         binaryTree.traverseTree(node);
+
+
+
+
+
+
+
 
     }
 }
